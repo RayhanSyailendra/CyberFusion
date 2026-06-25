@@ -1,0 +1,488 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * CYBER THREAT INTELLIGENCE DESIGN SYSTEM
+ * 
+ * Color Philosophy:
+ * - Deep Navy (#0A0E27): Authority, depth, technological sophistication
+ * - Cyan Blue (#00D9FF): Vigilance, detection, active monitoring
+ * - Electric Violet (#7B61FF): Intelligence, analysis, AI-powered insights
+ * - Warning Amber (#FFB020): Caution, medium-level threats
+ * - Critical Red (#FF3B5C): Danger, high-priority alerts
+ * - Success Green (#00E676): Security, verified, safe status
+ * - Slate Grays: Neutrality, data clarity, professional interface
+ */
+
+:root {
+  /* Typography */
+  --font-size: 16px;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  
+  /* Font Weights - Intelligence-grade hierarchy */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Primary Colors - Core Intelligence Platform */
+  --background: #F8F9FB;
+  --foreground: #0F1419;
+  --card: #FFFFFF;
+  --card-foreground: #0F1419;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F1419;
+  
+  /* Brand Colors - Technological Authority */
+  --primary: #0052FF;
+  --primary-foreground: #FFFFFF;
+  --primary-hover: #0041CC;
+  --primary-light: #E6EFFF;
+  
+  /* Secondary Colors - Analysis & Detection */
+  --secondary: #6366F1;
+  --secondary-foreground: #FFFFFF;
+  --secondary-hover: #4F46E5;
+  --secondary-light: #EEF2FF;
+  
+  /* Accent Colors - Active Monitoring */
+  --accent: #00D9FF;
+  --accent-foreground: #0A0E27;
+  --accent-hover: #00B8D9;
+  --accent-light: #E0F7FF;
+  
+  /* Status Colors - Threat Levels */
+  --success: #00E676;
+  --success-foreground: #0A0E27;
+  --success-dark: #00C853;
+  --success-light: #E8F5E9;
+  
+  --warning: #FFB020;
+  --warning-foreground: #0A0E27;
+  --warning-dark: #FF9800;
+  --warning-light: #FFF8E1;
+  
+  --destructive: #FF3B5C;
+  --destructive-foreground: #FFFFFF;
+  --destructive-dark: #E91E63;
+  --destructive-light: #FFEBEE;
+  
+  --critical: #D32F2F;
+  --critical-foreground: #FFFFFF;
+  --critical-dark: #B71C1C;
+  --critical-light: #FFCDD2;
+  
+  /* Neutral Palette - Data Clarity */
+  --muted: #F1F3F5;
+  --muted-foreground: #64748B;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --input-background: #FFFFFF;
+  --switch-background: #CBD5E1;
+  --ring: #0052FF;
+  
+  /* Sidebar - Command Center Aesthetic */
+  --sidebar: #0A0E27;
+  --sidebar-foreground: #E2E8F0;
+  --sidebar-primary: #00D9FF;
+  --sidebar-primary-foreground: #0A0E27;
+  --sidebar-accent: #1E293B;
+  --sidebar-accent-foreground: #F1F5F9;
+  --sidebar-border: #1E293B;
+  --sidebar-ring: #00D9FF;
+  
+  /* Chart Colors - Data Visualization */
+  --chart-1: #0052FF;
+  --chart-2: #00D9FF;
+  --chart-3: #7B61FF;
+  --chart-4: #FF3B5C;
+  --chart-5: #FFB020;
+  --chart-6: #00E676;
+  
+  /* Shadows - Depth & Hierarchy */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Border Radius */
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark Mode - Night Operations Interface */
+  --background: #0A0E27;
+  --foreground: #E2E8F0;
+  --card: #1E293B;
+  --card-foreground: #E2E8F0;
+  --popover: #1E293B;
+  --popover-foreground: #E2E8F0;
+  
+  /* Brand Colors - Enhanced for Dark Mode */
+  --primary: #0052FF;
+  --primary-foreground: #FFFFFF;
+  --primary-hover: #0041CC;
+  --primary-light: #1E3A8A;
+  
+  --secondary: #7B61FF;
+  --secondary-foreground: #FFFFFF;
+  --secondary-hover: #6366F1;
+  --secondary-light: #312E81;
+  
+  --accent: #00D9FF;
+  --accent-foreground: #0A0E27;
+  --accent-hover: #00B8D9;
+  --accent-light: #164E63;
+  
+  /* Status Colors - High Contrast for Dark Mode */
+  --success: #00E676;
+  --success-foreground: #0A0E27;
+  --success-dark: #00C853;
+  --success-light: #1B4332;
+  
+  --warning: #FFB020;
+  --warning-foreground: #0A0E27;
+  --warning-dark: #FF9800;
+  --warning-light: #4A3800;
+  
+  --destructive: #FF3B5C;
+  --destructive-foreground: #FFFFFF;
+  --destructive-dark: #E91E63;
+  --destructive-light: #4A1625;
+  
+  --critical: #FF1744;
+  --critical-foreground: #FFFFFF;
+  --critical-dark: #D32F2F;
+  --critical-light: #5A1A1A;
+  
+  /* Neutral Palette - Enhanced Readability */
+  --muted: #334155;
+  --muted-foreground: #94A3B8;
+  --border: #334155;
+  --input: #334155;
+  --input-background: #1E293B;
+  --switch-background: #475569;
+  --ring: #00D9FF;
+  
+  /* Sidebar - Enhanced for Dark Mode */
+  --sidebar: #0F172A;
+  --sidebar-foreground: #E2E8F0;
+  --sidebar-primary: #00D9FF;
+  --sidebar-primary-foreground: #0A0E27;
+  --sidebar-accent: #1E293B;
+  --sidebar-accent-foreground: #F1F5F9;
+  --sidebar-border: #1E293B;
+  --sidebar-ring: #00D9FF;
+  
+  /* Chart Colors - Optimized for Dark Backgrounds */
+  --chart-1: #3B82F6;
+  --chart-2: #00D9FF;
+  --chart-3: #A78BFA;
+  --chart-4: #FF3B5C;
+  --chart-5: #FFB020;
+  --chart-6: #00E676;
+  
+  /* Shadows - Enhanced for Dark Mode */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-light: var(--secondary-light);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-light: var(--accent-light);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-dark: var(--destructive-dark);
+  --color-destructive-light: var(--destructive-light);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-dark: var(--success-dark);
+  --color-success-light: var(--success-light);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-dark: var(--warning-dark);
+  --color-warning-light: var(--warning-light);
+  --color-critical: var(--critical);
+  --color-critical-foreground: var(--critical-foreground);
+  --color-critical-dark: var(--critical-dark);
+  --color-critical-light: var(--critical-light);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+  
+  code, pre, .code {
+    font-family: var(--font-mono);
+    font-variant-ligatures: none;
+  }
+}
+
+/**
+ * Enhanced Typography System for Threat Intelligence
+ * Optimized for data-heavy interfaces, technical content, and analytical clarity
+ */
+@layer base {
+  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
+    h1 {
+      font-size: 2.25rem;
+      font-weight: var(--font-weight-bold);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--foreground);
+    }
+
+    h2 {
+      font-size: 1.875rem;
+      font-weight: var(--font-weight-bold);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--foreground);
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: var(--font-weight-semibold);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: var(--foreground);
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: var(--font-weight-semibold);
+      line-height: 1.4;
+      letter-spacing: -0.005em;
+      color: var(--foreground);
+    }
+
+    h5 {
+      font-size: 1.125rem;
+      font-weight: var(--font-weight-semibold);
+      line-height: 1.4;
+      color: var(--foreground);
+    }
+
+    h6 {
+      font-size: 1rem;
+      font-weight: var(--font-weight-semibold);
+      line-height: 1.5;
+      color: var(--foreground);
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.6;
+      color: var(--foreground);
+    }
+
+    label {
+      font-size: 0.875rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+      color: var(--foreground);
+    }
+
+    button {
+      font-size: 0.9375rem;
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      letter-spacing: 0.005em;
+    }
+
+    input, textarea, select {
+      font-size: 0.9375rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      color: var(--foreground);
+    }
+    
+    table {
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+    
+    small {
+      font-size: 0.8125rem;
+      font-weight: var(--font-weight-normal);
+      line-height: 1.4;
+    }
+  }
+}
+
+/* Utility Classes for Intelligence Platform */
+@layer utilities {
+  .text-mono {
+    font-family: var(--font-mono);
+  }
+  
+  .tracking-tight {
+    letter-spacing: -0.02em;
+  }
+  
+  .tracking-tighter {
+    letter-spacing: -0.03em;
+  }
+  
+  .shadow-intelligence {
+    box-shadow: 0 4px 24px rgba(0, 82, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .shadow-alert {
+    box-shadow: 0 4px 24px rgba(255, 59, 92, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+  
+  .bg-gradient-cyber {
+    background: linear-gradient(135deg, #0A0E27 0%, #1E293B 100%);
+  }
+  
+  .bg-gradient-threat {
+    background: linear-gradient(135deg, #FF3B5C 0%, #D32F2F 100%);
+  }
+  
+  .bg-gradient-safe {
+    background: linear-gradient(135deg, #00E676 0%, #00C853 100%);
+  }
+  
+  .text-gradient-cyber {
+    background: linear-gradient(135deg, #00D9FF 0%, #0052FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Status Badge Variants */
+@layer components {
+  .status-critical {
+    background-color: var(--critical-light);
+    color: var(--critical);
+    border: 1px solid var(--critical);
+  }
+  
+  .status-high {
+    background-color: var(--destructive-light);
+    color: var(--destructive);
+    border: 1px solid var(--destructive);
+  }
+  
+  .status-medium {
+    background-color: var(--warning-light);
+    color: var(--warning-dark);
+    border: 1px solid var(--warning);
+  }
+  
+  .status-low {
+    background-color: var(--success-light);
+    color: var(--success-dark);
+    border: 1px solid var(--success);
+  }
+  
+  .status-info {
+    background-color: var(--accent-light);
+    color: var(--accent-hover);
+    border: 1px solid var(--accent);
+  }
+}
+
+html {
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+/* Improved Focus States for Accessibility */
+@layer base {
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Enhanced Table Styles for Data Clarity */
+@layer components {
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .data-table th {
+    font-weight: var(--font-weight-semibold);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background-color: var(--muted);
+    border-bottom: 2px solid var(--border);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted-foreground);
+  }
+  
+  .data-table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .data-table tbody tr:hover {
+    background-color: var(--muted);
+    transition: background-color 0.15s ease;
+  }
+}
