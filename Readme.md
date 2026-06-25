@@ -94,8 +94,11 @@ setup.bat
 
 
 
-Script tersebut akan menginstal seluruh dependensi backend dan frontend yang diperlukan oleh aplikasi.
+Script tersebut akan menginstal seluruh dependensi backend dan frontend yang diperlukan oleh aplikasi setelah menjalankan command berikut
 
+```bash
+call npm install
+```
 
 
 Tunggu hingga proses instalasi selesai tanpa error.
