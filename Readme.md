@@ -1,24 +1,36 @@
-\# Panduan Instalasi CyberFusion
+\# CyberFusion
 
 
 
-\## Prasyarat
+CyberFusion merupakan aplikasi Cyber Threat Intelligence (CTI) yang mengintegrasikan MISP, VirusTotal, OpenAI, dan Supabase untuk membantu proses analisis ancaman siber secara terpusat.
 
 
 
-Sebelum menjalankan aplikasi, pastikan perangkat telah terpasang perangkat lunak berikut:
+\---
 
 
 
-\### 1. Node.js
+\# Prasyarat
 
 
 
-Unduh dan instal Node.js versi LTS.
+Sebelum menjalankan aplikasi, pastikan perangkat telah terinstal perangkat lunak berikut:
 
 
 
-Setelah instalasi selesai, pastikan Node.js dan npm telah terpasang dengan menjalankan:
+\## 1. Node.js
+
+
+
+Unduh dan instal Node.js versi LTS melalui:
+
+
+
+https://nodejs.org
+
+
+
+Verifikasi instalasi:
 
 
 
@@ -32,15 +44,19 @@ npm -v
 
 
 
-\### 2. Docker Desktop
+\## 2. Docker Desktop
 
 
 
-Unduh dan instal Docker Desktop.
+Unduh dan instal Docker Desktop melalui:
 
 
 
-Setelah instalasi selesai, pastikan Docker dapat dijalankan dengan perintah:
+https://www.docker.com/products/docker-desktop/
+
+
+
+Verifikasi instalasi:
 
 
 
@@ -54,15 +70,19 @@ docker compose version
 
 
 
+Pastikan Docker Desktop dalam keadaan aktif sebelum melanjutkan proses instalasi.
+
+
+
 \---
 
 
 
-\## Langkah 1 – Instalasi Dependensi Website
+\# Langkah 1 - Instalasi Dependensi Website
 
 
 
-Buka direktori utama proyek CyberFusion, kemudian jalankan:
+Buka direktori utama CyberFusion kemudian jalankan:
 
 
 
@@ -74,11 +94,11 @@ setup.bat
 
 
 
-Script tersebut akan menginstal seluruh dependensi frontend dan backend yang dibutuhkan oleh aplikasi.
+Script tersebut akan menginstal seluruh dependensi backend dan frontend yang diperlukan oleh aplikasi.
 
 
 
-Tunggu hingga proses instalasi selesai dan tidak terdapat pesan error.
+Tunggu hingga proses instalasi selesai tanpa error.
 
 
 
@@ -86,27 +106,95 @@ Tunggu hingga proses instalasi selesai dan tidak terdapat pesan error.
 
 
 
-\## Langkah 2 – Menjalankan MISP Menggunakan Docker
+\# Langkah 2 - Menjalankan MISP Menggunakan Docker
 
 
 
-install image 'nukib' untuk MISP
+CyberFusion menggunakan MISP sebagai platform Cyber Threat Intelligence. Pada penelitian ini, MISP dijalankan menggunakan Docker image `nukib/misp` yang terhubung dengan MariaDB dan Redis.
 
 
 
-Masuk ke direktori MISP Docker:
+Buat folder baru untuk MISP:
 
 
 
 ```bash
 
-cd misp-docker
+mkdir misp
+
+cd misp
 
 ```
 
 
 
-Jalankan seluruh container MISP:
+Buat file `docker-compose.yml` dengan isi berikut:
+
+
+
+```yaml
+
+version: "3.8"
+
+
+
+services:
+
+&#x20; redis:
+
+&#x20;   image: redis:7-alpine
+
+&#x20;   restart: unless-stopped
+
+
+
+&#x20; db:
+
+&#x20;   image: mariadb:10.11
+
+&#x20;   restart: unless-stopped
+
+&#x20;   environment:
+
+&#x20;     MYSQL\_ROOT\_PASSWORD: rootpassword
+
+&#x20;     MYSQL\_DATABASE: misp
+
+&#x20;     MYSQL\_USER: misp
+
+&#x20;     MYSQL\_PASSWORD: misppassword
+
+
+
+&#x20; misp:
+
+&#x20;   image: nukib/misp:latest
+
+&#x20;   restart: unless-stopped
+
+&#x20;   depends\_on:
+
+&#x20;     - db
+
+&#x20;     - redis
+
+&#x20;   ports:
+
+&#x20;     - "80:80"
+
+&#x20;     - "443:443"
+
+
+
+volumes:
+
+&#x20; db\_data:
+
+```
+
+
+
+Jalankan seluruh container:
 
 
 
@@ -118,7 +206,7 @@ docker compose up -d
 
 
 
-Pastikan seluruh container berjalan dengan baik:
+Periksa status container:
 
 
 
@@ -130,7 +218,19 @@ docker ps
 
 
 
-Tunggu hingga proses inisialisasi MISP selesai sebelum melanjutkan ke langkah berikutnya.
+Pastikan container berikut berjalan:
+
+
+
+\* misp
+
+\* db
+
+\* redis
+
+
+
+Tunggu beberapa menit hingga proses inisialisasi selesai.
 
 
 
@@ -138,31 +238,77 @@ Tunggu hingga proses inisialisasi MISP selesai sebelum melanjutkan ke langkah be
 
 
 
-\## Langkah 3 – Konfigurasi Environment Variable
+\# Langkah 3 - Mengakses MISP
 
 
 
-Buat atau sesuaikan file `.env` sesuai kebutuhan aplikasi.
+Setelah seluruh container berhasil berjalan, buka browser dan akses:
 
 
 
-Isi variabel yang diperlukan, seperti:
+```text
+
+https://localhost
+
+```
 
 
 
-\* URL MISP
+atau
 
-\* API Key MISP
 
-\* API Key VirusTotal
 
-\* API Key OpenAI
+```text
 
-\* URL Supabase
+http://localhost
 
-\* Anon Key Supabase
+```
 
-\* Service Role Key Supabase
+
+
+sesuai konfigurasi yang digunakan.
+
+
+
+Masuk menggunakan akun administrator yang telah dikonfigurasi pada MISP.
+
+
+
+\---
+
+
+
+\# Langkah 4 - Mendapatkan API Key MISP
+
+
+
+Setelah berhasil login ke MISP:
+
+
+
+1\. Buka menu \*\*Administration\*\*.
+
+2\. Pilih \*\*List Users\*\*.
+
+3\. Pilih akun administrator yang digunakan.
+
+4\. Salin nilai \*\*Auth Key\*\*.
+
+
+
+API Key tersebut akan digunakan pada konfigurasi backend CyberFusion.
+
+
+
+\---
+
+
+
+\# Langkah 5 - Konfigurasi Environment Variable
+
+
+
+Pastikan file `.env` backend telah dikonfigurasi dengan benar.
 
 
 
@@ -172,15 +318,31 @@ Contoh konfigurasi:
 
 ```env
 
-MISP\_URL=http://localhost
+MISP\_URL=https://localhost
 
-MISP\_API\_KEY=YOUR\_API\_KEY
+MISP\_API\_KEY=YOUR\_MISP\_API\_KEY
 
-VIRUSTOTAL\_API\_KEY=YOUR\_API\_KEY
 
-OPENAI\_API\_KEY=YOUR\_API\_KEY
+
+VIRUSTOTAL\_API\_KEY=YOUR\_VIRUSTOTAL\_API\_KEY
+
+
+
+OPENAI\_API\_KEY=YOUR\_OPENAI\_API\_KEY
+
+
+
+SUPABASE\_URL=YOUR\_SUPABASE\_URL
+
+SUPABASE\_ANON\_KEY=YOUR\_SUPABASE\_ANON\_KEY
+
+SUPABASE\_SERVICE\_ROLE\_KEY=YOUR\_SUPABASE\_SERVICE\_ROLE\_KEY
 
 ```
+
+
+
+Sesuaikan seluruh nilai dengan konfigurasi yang digunakan selama pengembangan.
 
 
 
@@ -188,11 +350,15 @@ OPENAI\_API\_KEY=YOUR\_API\_KEY
 
 
 
-\## Langkah 4 – Menjalankan Backend
+\# Langkah 6 - Menjalankan Backend
 
 
 
-Buka terminal baru dan masuk ke direktori backend:
+Buka terminal baru.
+
+
+
+Masuk ke direktori backend:
 
 
 
@@ -216,15 +382,23 @@ npm run dev
 
 
 
+Tunggu hingga backend berhasil berjalan tanpa error.
+
+
+
 \---
 
 
 
-\## Langkah 5 – Menjalankan Frontend
+\# Langkah 7 - Menjalankan Frontend
 
 
 
-Buka terminal baru dan masuk ke direktori frontend:
+Buka terminal baru.
+
+
+
+Masuk ke direktori frontend:
 
 
 
@@ -248,11 +422,15 @@ npm run dev
 
 
 
+Tunggu hingga frontend berhasil berjalan.
+
+
+
 \---
 
 
 
-\## Mengakses Aplikasi
+\# Langkah 8 - Mengakses Aplikasi
 
 
 
@@ -292,11 +470,47 @@ Port dapat berbeda tergantung konfigurasi yang digunakan.
 
 
 
-\## Troubleshooting
+\# Struktur Direktori
 
 
 
-\### Dependensi Gagal Terinstal
+```text
+
+CyberFusion/
+
+│
+
+├── setup.bat
+
+├── README.md
+
+│
+
+├── Backend-Virustotal-main/
+
+│   └── Backend-Virustotal-main/
+
+│       └── Backend-Virustotal-main/
+
+│
+
+└── UI\_UX-CTI-APP-main/
+
+&#x20;   └── UI\_UX-CTI-APP-main/
+
+```
+
+
+
+\---
+
+
+
+\# Troubleshooting
+
+
+
+\## Dependensi Gagal Terinstal
 
 
 
@@ -312,11 +526,35 @@ setup.bat
 
 
 
-untuk menginstal ulang seluruh dependensi Node.js.
+Pastikan perangkat terhubung ke internet dan Node.js telah terinstal dengan benar.
 
 
 
-\### Container Docker Tidak Berjalan
+\---
+
+
+
+\## Docker Tidak Berjalan
+
+
+
+Pastikan Docker Desktop telah dijalankan sebelum mengeksekusi:
+
+
+
+```bash
+
+docker compose up -d
+
+```
+
+
+
+\---
+
+
+
+\## MISP Tidak Dapat Diakses
 
 
 
@@ -332,7 +570,7 @@ docker ps
 
 
 
-Kemudian jalankan kembali:
+Apabila terdapat container yang berhenti, jalankan kembali:
 
 
 
@@ -344,7 +582,11 @@ docker compose up -d
 
 
 
-\### MISP Tidak Dapat Diakses
+\---
+
+
+
+\## Backend Tidak Terhubung ke MISP
 
 
 
@@ -352,11 +594,13 @@ Pastikan:
 
 
 
-\* Docker Desktop sedang berjalan.
+\* MISP telah berjalan dengan normal.
 
-\* Seluruh container MISP berstatus aktif.
+\* URL MISP pada file `.env` sudah sesuai.
 
-\* Port yang digunakan MISP tidak digunakan oleh aplikasi lain.
+\* API Key MISP telah dikonfigurasi dengan benar.
+
+\* Tidak terdapat firewall yang memblokir koneksi.
 
 
 
@@ -364,35 +608,11 @@ Pastikan:
 
 
 
-\## Struktur Proyek
+\# Catatan
 
 
 
-```text
-
-CyberFusion/
-
-│
-
-├── setup.bat
-
-├── README.md
-
-├── misp-docker/
-
-├── Backend-Virustotal-main/
-
-└── UI\_UX-CTI-APP-main/
-
-```
-
-
-
-\## Catatan
-
-
-
-Aplikasi CyberFusion memerlukan layanan MISP yang aktif untuk menjalankan fitur analisis ancaman siber. Oleh karena itu, pastikan seluruh container MISP telah berjalan dengan baik sebelum menjalankan backend dan frontend.
+CyberFusion memerlukan layanan MISP yang aktif untuk menjalankan proses analisis ancaman siber. Oleh karena itu, pastikan seluruh container MISP telah berjalan dengan baik sebelum menjalankan backend dan frontend.
 
 
 
