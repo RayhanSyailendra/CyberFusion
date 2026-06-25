@@ -359,8 +359,7 @@ Masuk ke direktori backend:
 
 ```bash
 
-cd Backend-Virustotal-main/Backend-Virustotal-main/Backend-Virustotal-main
-
+cd Backend-Virustotal-main
 ```
 
 
