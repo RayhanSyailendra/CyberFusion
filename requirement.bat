@@ -33,13 +33,13 @@ echo.
 echo Installing Backend dependencies...
 echo.
 
-if not exist "CyberFusion/Backend-Virustotal-main\Backend-Virustotal-main\Backend-Virustotal-main" (
+if not exist "CyberFusion/Backend-Virustotal-main" (
     echo [ERROR] Backend folder not found.
     pause
     exit /b 1
 )
 
-pushd "CyberFusion/Backend-Virustotal-main\Backend-Virustotal-main\Backend-Virustotal-main"
+pushd "CyberFusion/Backend-Virustotal-main"
 
 call npm install
 
