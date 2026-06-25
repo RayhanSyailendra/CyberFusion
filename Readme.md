@@ -482,10 +482,6 @@ CyberFusion/
 
 ├── Backend-Virustotal-main/
 
-│   └── Backend-Virustotal-main/
-
-│       └── Backend-Virustotal-main/
-
 │
 
 └── UI\_UX-CTI-APP-main/
