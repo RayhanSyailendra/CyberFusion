@@ -93,15 +93,7 @@ setup.bat
 ```
 
 
-
-Script tersebut akan menginstal seluruh dependensi backend dan frontend yang diperlukan oleh aplikasi setelah menjalankan command berikut
-
-```bash
-npm install
-```
-
-
-Command tersebut dijalankan di folder yang memiliki 'package.json' baik pada bagian frontend maupun backend. Tunggu hingga proses instalasi selesai tanpa error.
+Double-click pada nama file. Tunggu hingga proses instalasi selesai tanpa error.
 
 
 
