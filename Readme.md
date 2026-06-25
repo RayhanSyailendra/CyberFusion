@@ -398,7 +398,7 @@ Masuk ke direktori frontend:
 
 ```bash
 
-cd UI\_UX-CTI-APP-main/UI\_UX-CTI-APP-main
+cd UI_UX-CTI-APP-main/UI_UX-CTI-APP-main
 
 ```
 
