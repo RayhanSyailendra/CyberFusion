@@ -250,7 +250,7 @@ export function DashboardPage({ accessToken, apiBaseUrl }: DashboardPageProps) {
       const { username, email } = getUserFromToken(accessToken);
       // 🔥 2. FETCH API PARALLEL
       const [chatRes, apiRes] = await Promise.all([
-        fetch("http://103.129.149.89:5000/chat", {
+        fetch("http://localhost:5000/chat", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -263,7 +263,7 @@ export function DashboardPage({ accessToken, apiBaseUrl }: DashboardPageProps) {
             email,
           }),
         }),
-        fetch("http://103.129.149.89:5000/api/analyze", {
+        fetch("http://localhost:5000/api/analyze", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -338,7 +338,7 @@ export function DashboardPage({ accessToken, apiBaseUrl }: DashboardPageProps) {
       // 🔥 5. TAMBAHAN CHECK-IP (lebih detail untuk IP)
       if (type === "ip") {
         try {
-          const abuseRes = await fetch("http://103.129.149.89:5000/check-ip", {
+          const abuseRes = await fetch("http://localhost:5000/check-ip", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -473,7 +473,7 @@ export function DashboardPage({ accessToken, apiBaseUrl }: DashboardPageProps) {
           correlationInsights: analysisResult?.correlationInsights || "",
         };
 
-        res = await fetch("http://103.129.149.89:5000/export/stix", {
+        res = await fetch("http://localhost:5000/export/stix", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -483,7 +483,7 @@ export function DashboardPage({ accessToken, apiBaseUrl }: DashboardPageProps) {
       } else {
         if (!analysisResult?.aiAnalysis) return;
 
-        res = await fetch("http://103.129.149.89:5000/api/export", {
+        res = await fetch("http://localhost:5000/api/export", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -41,7 +41,7 @@ export default function App() {
   // Tambahan: simpan data profile dari tabel profiles
   const [profile, setProfile] = useState<any>(null);
 
-  const apiBaseUrl = "http://103.129.149.89:5000";
+  const apiBaseUrl = "http://localhost:5000";
   /* ===========================================
      FETCH USER PROFILE
   =========================================== */

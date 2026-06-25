@@ -48,7 +48,7 @@ interface HistoryPageProps {
 }
 
 /* ── Constants ── */
-const WS_URL = "ws://103.129.149.89:5000/ws";
+const WS_URL = "ws://localhost:5000/ws";
 const PAGE_SIZE = 10;
 
 /* ── Helpers ── */
